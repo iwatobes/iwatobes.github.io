@@ -1,46 +1,56 @@
 <!doctype html>
-<html>
-  <head>
+<html lang="en" class="ng-app">
+	<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Hella Issues</title>
 
-    <link rel="stylesheet" href="resources/css/styles.css">
-	<link rel="stylesheet" href="resources/css/pygment_trac.css">
+    <link rel="stylesheet" href="app/css/styles.css">
+	<link rel="stylesheet" href="app/css/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
-    <div class="wrapper">
+	<body >	
+		<div ng-view></div>
+		<div class="wrapper">
       <header>
         <h1>Nguyen Viet Thinh</h1>
         <p>My personal page - where is my about me? I should really make a todo list. My mind is a mess</p>
 
 
         <p class="view"><a href="https://github.com/iwatobes">View My GitHub Profile</a></p>
-
+			<ul class="menu">
+			<li><a href="#/view1">View 1</a></li>
+			<li><a href="#/view2">View 2</a></li>
+		</ul>
+		
       </header>
       <section>
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to My Personal Page.</h3>
-<p>My take on software engineer life has always feel like an adventure. There are vast lands to explore and I enjoy the thrill of having survived/master a new land </p>
-<p>This is the journey of a inexperienced software engineer on design his personal blog</p>
-<p>font for blog entry: Gentium Book Basic - book like font </p>
-<p>font for normal post: Github default - this impress me alot at first </p>
-<p>This is my personal page- Design based on Single Web Page (SPA) ideal- Using a combination of js libraries. As I'm familiar with Backbone I feel I need to try out new framework such as angular.js and its companion suites such as angularUI. On first glance Angular seem more complicated and not matured as compare to Backbone.
-</p>
-<p> I plan on utilizing resources and guides available such as : <br/>
-<a href="http://ruoyusun.com/2013/05/25/things-i-wish-i-were-told-about-angular-js.html" > Some guide</a> </p>
+		<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to My Personal Page.</h3>
+		<p>My take on software engineer life has always feel like an adventure. There are vast lands to explore and I enjoy the thrill of having survived/master a new land </p>
+		<p>This is the journey of a inexperienced software engineer on design his personal blog</p>
+		<p>font for blog entry: Gentium Book Basic - book like font </p>
+		<p>font for normal post: Github default - this impress me alot at first </p>
+		<p>This is my personal page- Design based on Single Web Page (SPA) ideal- Using a combination of js libraries. As I'm familiar with Backbone I feel I need to try out new framework such as angular.js and its companion suites such as angularUI. On first glance Angular seem more complicated and not matured as compare to Backbone.
+		</p>
+		<p> I plan on utilizing resources and guides available such as : <br/>
+		<a href="http://ruoyusun.com/2013/05/25/things-i-wish-i-were-told-about-angular-js.html" > Blog</a> <br/>
+		<a href="http://blog.artlogic.com/2013/05/02/ive-been-doing-it-wrong-part-1-of-3/" > Blog</a> 
+		<br/>
+		<a href="https://github.com/tnajdek/angular-requirejs-seed" > Seed Project using Angular and Require</a> 
 
-<p>this is counter productive but what about using a crawler on my own blog to keep track of all posts instead of a full-fledge db?</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"></script>
-  </body>
+		</p>
+		<p>capability for testing : I'm absolutely in love with Jasmine - Sinon right now. </p>
+		<p>this is counter productive but what about using a crawler on my own blog to keep track of all posts instead of a full-fledge db?</p>
+			  </section>
+			  <footer>
+				<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+			  </footer>
+			</div>
+		
+		<script data-main="app/js/main" src="/bower_components/requirejs/require.js"></script>		
+	</body>
 </html>
