@@ -1,19 +1,26 @@
 <!doctype html>
-<html lang="en" class="ng-app">
+<html lang="en" data-framework="angularjs">
 	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Hella Issues</title>
-
-    <link rel="stylesheet" href="app/css/styles.css">
-	<link rel="stylesheet" href="app/css/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-	<body >	
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AngularJS & RequireJS • TodoMVC</title>
+		<link rel="stylesheet" href="css/styles.css">		
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 		
+		
+		<style>[ng-cloak] { display: none; }</style>
+		<script>
+			// Include angular-loader to allow modules to be loaded in any order.
+			/*
+			   AngularJS v1.0.2
+			   (c) 2010-2012 Google, Inc. http://angularjs.org
+			   License: MIT
+			 */
+			(function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"), value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
+		</script>
+	</head>
+	<body>
+	
 		<div class="wrapper">
       <header>
         <h1>Nguyen Viet Thinh</h1>
@@ -21,14 +28,8 @@
 
 
         <p class="view"><a href="https://github.com/iwatobes">View My GitHub Profile</a></p>
-		<p>	
-			<ul class="menu">
-			<li><a href="#/view1">View 1</a></li>
-			<li><a href="#/view2">View 2</a></li>
-			</ul>
-			<div ng-view></div>
-		</p>
 		
+
       </header>
       <section>
         <h3>
@@ -41,18 +42,61 @@
 		</p>
 		<p> I plan on utilizing resources and guides available such as : <br/>
 		<a href="http://ruoyusun.com/2013/05/25/things-i-wish-i-were-told-about-angular-js.html" > Blog</a> <br/>
-		<a href="http://blog.artlogic.com/2013/05/02/ive-been-doing-it-wrong-part-1-of-3/" > Blog</a> 
+		<a href="http://blog.artlogic.com/2013/05/02/ive-been-doing-it-wrong-part-1-of-3/" > Blog</a>
 		<br/>
-		<a href="https://github.com/tnajdek/angular-requirejs-seed" > Seed Project using Angular and Require</a> 
+		<a href="https://github.com/tnajdek/angular-requirejs-seed" > Seed Project using Angular and Require</a>
 		</p>
-		<p>capability for testing : I'm absolutely in love with Jasmine - Sinon right now so unit test will be included. </p>		
+		<p>capability for testing : I'm absolutely in love with Jasmine - Sinon right now so unit test will be included. </p>
 		<p>Plan for blogs : if is a blog entry, it will be represented as a collection of models with properties { date : title : tags : url : template type : content }<br/>. We can then use a single template to render. also can sort and display list of blog posts</p>
-			  </section>
-			  <footer>
-				<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-			  </footer>
+		</section>
+		<section id="todoapp" ng-controller="TodoController">
+			<header id="header">
+				<h1>todos</h1>
+				<form id="todo-form" ng-submit="addTodo()">
+					<input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>
+				</form>
+			</header>
+			<section id="main" ng-show="todos.length" ng-cloak>
+				<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+				<label for="toggle-all">Mark all as complete</label>
+				<ul id="todo-list">
+					<li ng-repeat="todo in todos | filter:statusFilter" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+						<div class="view">
+							<input class="toggle" type="checkbox" ng-model="todo.completed">
+							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+							<button class="destroy" ng-click="removeTodo(todo)"></button>
+						</div>
+						<form ng-submit="doneEditing(todo)">
+							<input class="edit" ng-model="todo.title" todo-blur="doneEditing(todo)" todo-focus="todo == editedTodo">
+						</form>
+					</li>
+				</ul>
+			</section>
+			<footer id="footer" ng-show="todos.length" ng-cloak>
+				<span id="todo-count"><strong>{{remainingCount}}</strong>
+					<ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+				</span>
+				<ul id="filters">
+					<li>
+						<a ng-class="{selected: location.path() == '/'} " href="#/">All</a>
+					</li>
+					<li>
+						<a ng-class="{selected: location.path() == '/active'}" href="#/active">Active</a>
+					</li>
+					<li>
+						<a ng-class="{selected: location.path() == '/completed'}" href="#/completed">Completed</a>
+					</li>
+				</ul>
+				<button id="clear-completed" ng-click="clearDoneTodos()" ng-show="remainingCount < todos.length">Clear completed ({{todos.length - remainingCount}})</button>
+			</footer>
+		</section>	  
 			</div>
 		
-		<script data-main="app/js/main" src="/bower_components/requirejs/require.js"></script>		
+		<footer id="info">
+			Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a>
+			<p>Based on example architecture by <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+		<script src="bower_components/todomvc-common/base.js"></script>
+		<script data-main="js/main" src="bower_components/requirejs/require.js"></script>
 	</body>
 </html>
