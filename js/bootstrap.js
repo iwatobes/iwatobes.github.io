@@ -1,9 +1,10 @@
 "use strict";
 
 require.config({
+	waitSeconds: 0,
   paths: {
     Console:      'libs/console/console'
-    , jQuery:     'libs/jquery/jquery'//'http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min'
+    , jQuery:     'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min'//'http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min'
     , Underscore: 'libs/underscore/underscore'
     , Angular:    'libs/angular/angular'
     , templates:  './../templates'
