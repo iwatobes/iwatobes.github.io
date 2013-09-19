@@ -27,7 +27,7 @@ define([
     controllers.initialize(mainModule);
 
     angular.bootstrap(window.document,['myApp']);
-    console.log
+    
   };
 
   return {
